@@ -14,6 +14,8 @@ DEF_HASH(4, LetterSum, for(int j = 0; j < LEN; j++){hash += (int) WORD[j];})
 
 DEF_HASH(5, Rolleft, for(int j = 0; j < LEN; j++){hash = (hash_t) ROL(hash) ^ WORD[j];})
 
+DEF_HASH(6, MyHash, hash = my_hash(WORD, sizeof(char)*LEN);)
+
 DEF_HASH(100, end, do_break = true;)
 
 #undef WORD

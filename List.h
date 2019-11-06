@@ -203,7 +203,7 @@ bool is_equal_hash_t(const hash_t left, const hash_t right);
 hash_t find_sum_hash(List_t * const stk, size_t size);
 
 
-hash_t hash(const void * const stk, size_t size);
+hash_t my_hash(const void * const stk, size_t size);
 
 
 bool check_size(List_t * const stk);
@@ -873,16 +873,16 @@ hash_t find_sum_hash(List_t * const lst, size_t size){
 
 	hash_t hash_sum = 0;
 	
-	hash_sum += hash(lst + sizeof(hash_t), size - sizeof(hash_t));
-	hash_sum += hash(lst->buff, lst->buff == nullptr ? 0 : sizeof(lst->canary_dynamic1) + sizeof(lst->canary_dynamic2)
+	hash_sum += my_hash(lst + sizeof(hash_t), size - sizeof(hash_t));
+	hash_sum += my_hash(lst->buff, lst->buff == nullptr ? 0 : sizeof(lst->canary_dynamic1) + sizeof(lst->canary_dynamic2)
 							       + sizeof(Cluster_t)*lst->maxsize);
-	hash_sum += hash(lst->name, lst->name == nullptr ? 0 : strlen(lst->name));
+	hash_sum += my_hash(lst->name, lst->name == nullptr ? 0 : strlen(lst->name));
 
 	return hash_sum;
 
 }
 
-hash_t hash(const void * const data, size_t size){
+hash_t my_hash(const void * const data, size_t size){
 
 	if(data == nullptr) return false;
 

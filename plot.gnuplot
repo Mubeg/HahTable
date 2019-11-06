@@ -8,4 +8,4 @@ set output 'out.png'
 set ylabel "Number of occurrences"
 set xlabel "Hash"
 set title "Krytaya laba po proge"
-plot for [i=2:6] "ofile.csv" using i
+plot for [i=5:7] "ofile.csv" using i
