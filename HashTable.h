@@ -7,7 +7,7 @@
 
 const int THE_GREATEST_PRIME_NUMBER = 1303;
 const char OTABLE_FILE[] = "ofile.csv";
-const char ITABLE_FILE[] = "ifile.txt";
+const char ITABLE_FILE[] = "itext.txt";
 const long long int HASH_TABLE_INIT_SIZE = 1303*1303*1303;
 
 

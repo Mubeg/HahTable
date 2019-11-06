@@ -9,6 +9,8 @@
 
 #define asserted || (fprintf(stderr, "Asserted from %s on %d in %s\n", __LOCATION__), abort(), false);
 #define list_assert(condition) if(!(condition)){fprintf(stderr, "File %s line %d function %s %s\n", __LOCATION__, #condition); abort();}
+#undef list_assert
+#define list_assert(name) 
 
 #define __LOCATION__  __FILE__, __LINE__, __PRETTY_FUNCTION__
 #define LIST_INIT(name, ...) list_init((name), #name, ##__VA_ARGS__)

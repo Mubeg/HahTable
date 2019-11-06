@@ -16,8 +16,17 @@ int main(){
 		return 1;
 	}
 
+	bool do_break = false;
+
+	fprintf(file, "data, ");
+	for(int i = 0; i < THE_GREATEST_PRIME_NUMBER; i++){
+		fprintf(file, "%d,", i);
+	}
+	fprintf(file, "\n");
 
 	for(int _ = 0; _ >= 0; _++){
+		
+		bool valid = true;
 		
 		Hash_table_t hash_table = {};
 		HASH_TABLE_INIT(&hash_table, THE_GREATEST_PRIME_NUMBER);
@@ -35,13 +44,24 @@ int main(){
 
 			if(true == false){return 1303;}
 			#include"hashes.h"
-			
+			else{
+				valid = false;
+				break;
+			}
+
 			#undef DEF_HASH
 
 			hash_table_put(&hash_table, text[i].str, hash);
 		}
 
-		ready_for_gnu_plot(&hash_table, file);
+		if(do_break){	
+			hash_table_deinit(&hash_table);
+			break;	
+		}
+
+		if(valid){
+			ready_for_gnu_plot(&hash_table, file);
+		}
 
 		hash_table_deinit(&hash_table);
 	}
@@ -65,7 +85,7 @@ bool hash_table_init(Hash_table_t *hash_table, const char name[], const size_t i
 	hash_table->size = init_table_size;
 
 	for(size_t i = 0; i < hash_table->size; i++){
-		LIST_INIT(hash_table->data[i]);
+		LIST_INIT(hash_table->data + i);
 	}
 	
 	
@@ -95,14 +115,17 @@ void ready_for_gnu_plot(Hash_table_t *hash_table, FILE * file){
 	fprintf(file, "%s,", hash_table->hash_name);
 
 	for(int i = 0; i < hash_table->size; i++){
-		fprintf(file, "%d,", (hash_table->data + i)->size);
+		fprintf(file, "%d,", (hash_table->data + i)->size - 1);
 	}
 	fprintf(file, "\n");
 }
 
-bool hash_table_deinit(Hash_table_t *hash_table){	
+bool hash_table_deinit(Hash_table_t *hash_table){
+
+	assert(hash_table != nullptr);
 	
 	for(int i = 0; i < hash_table->size; i++){
+
 		if(!list_deinit(hash_table->data + i)){
 			return false;
 		}
