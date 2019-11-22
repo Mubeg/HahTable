@@ -75,7 +75,7 @@ int main(){
 
 bool hash_table_init(Hash_table_t *hash_table, const char name[], const size_t init_table_size /*= HASH_TABLE_INIT_SIZE*/){
 
-	assert(hash_table != nullptr);
+	table_assert(hash_table != nullptr);
 	if(init_table_size < 0){
 		return false;	
 	}
@@ -93,7 +93,7 @@ bool hash_table_init(Hash_table_t *hash_table, const char name[], const size_t i
 
 	hash_table->canary2 = CANARY_VALUE;
 
-	//assert(check_list(hash_table, __LOCATION__));
+	//table_assert(check_list(hash_table, __LOCATION__));
  
 	return true;
 }
@@ -101,11 +101,11 @@ bool hash_table_init(Hash_table_t *hash_table, const char name[], const size_t i
 
 bool hash_table_put(Hash_table_t *hash_table, Elem_t elem, hash_t hash){
 
-	assert(hash_table != nullptr);
+	table_assert(hash_table != nullptr);
 
 	List_t * list = (hash_table->data + hash % THE_GREATEST_PRIME_NUMBER);
  	list -> head == 0 ? (list_add_head(list), list_set(list, list->head, elem)) : list_add_after(list, elem, list->head);
-	//assert(check_list(hash_table, __LOCATION__));
+	//table_assert(check_list(hash_table, __LOCATION__));
  
 	return true;
 }
@@ -122,7 +122,7 @@ void ready_for_gnu_plot(Hash_table_t *hash_table, FILE * file){
 
 bool hash_table_deinit(Hash_table_t *hash_table){
 
-	assert(hash_table != nullptr);
+	table_assert(hash_table != nullptr);
 	
 	for(int i = 0; i < hash_table->size; i++){
 

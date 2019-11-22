@@ -2,7 +2,7 @@
 
 #define WORD text[i].str
 #define LEN text[i].size
-#define ROL(hash) (hash >> (sizeof(hash)*8 - 1) | hash << 1)
+#define ROL(hash) ((hash >> (sizeof(hash)*8 - 1)) | (hash << 1))
 
 DEF_HASH(1, sillyHash, hash = 1;)
 

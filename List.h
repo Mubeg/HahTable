@@ -8,7 +8,7 @@
 #include <locale.h>
 
 #define asserted || (fprintf(stderr, "Asserted from %s on %d in %s\n", __LOCATION__), abort(), false);
-#define list_assert(condition) if(!(condition)){fprintf(stderr, "File %s line %d function %s %s\n", __LOCATION__, #condition); abort();}
+#define list_assert(condition) if(!(condition)){fprintf(stderr, "Assertion failed File %s line %d function %s %s\n", __LOCATION__, #condition); abort();}
 #undef list_assert
 #define list_assert(name) 
 

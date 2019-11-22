@@ -3,6 +3,7 @@
 
 
 #define HASH_TABLE_INIT(name, ...) hash_table_init((name), #name, ##__VA_ARGS__)
+#define table_assert(condition) if(!(condition)){fprintf(stderr, "Assertion failed File %s line %d function %s %s\n", __LOCATION__, #condition); abort();}
 
 
 const int THE_GREATEST_PRIME_NUMBER = 1303;
